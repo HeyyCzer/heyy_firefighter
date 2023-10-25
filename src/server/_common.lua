@@ -1,10 +1,17 @@
+---@diagnostic disable-next-line: deprecated
 local Tunnel = module("vrp","lib/Tunnel")
-local Proxy = module("vrp","lib/Proxy")
+---@diagnostic disable-next-line: deprecated
+local Proxy = module("vrp", "lib/Proxy")
+
+---@diagnostic disable-next-line: undefined-field
 vRP = Proxy.getInterface("vRP")
+---@diagnostic disable-next-line: undefined-field
 vRPclient = Tunnel.getInterface("vRP")
 
 src = {}
+---@diagnostic disable-next-line: undefined-field
 Tunnel.bindInterface(GetCurrentResourceName(), src)
+---@diagnostic disable-next-line: undefined-field
 vCLIENT = Tunnel.getInterface(GetCurrentResourceName())
 
 ---Trigger a client-side event
