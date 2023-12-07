@@ -6,6 +6,15 @@ function uuid()
     end)
 end
 
+-- get random index from table
+function getRandomIndex(t)
+	local keys = {}
+	for key, _ in pairs(t) do
+		table.insert(keys, key)
+	end
+	return keys[math.random(1, #keys)]
+end
+
 function _debug(...)
 	if config.debug then
 		print("^4[DEBUG]^0", ...)
@@ -13,7 +22,7 @@ function _debug(...)
 end
 
 function _info(...)
-	print("^4[INFORMAÇÃO]^0", ...)
+	print("^4[INFO]^0", ...)
 end
 
 function _success(...)

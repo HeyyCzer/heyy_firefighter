@@ -18,5 +18,6 @@ server_scripts {
 	"src/server/_common.lua",
 	"src/server/model/fire.lua",
 	"src/server/controller/fire.lua",
+	"src/server/controller/scenarios.lua",
 	"src/server/admin.lua",
 }

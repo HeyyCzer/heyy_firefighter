@@ -37,6 +37,7 @@ OnNet("admin:setCreatorStatus", function(status)
 			end
 			PushScaleformMovieFunction(instructionScaleform, "CLEAR_ALL")
 			PushScaleformMovieFunction(instructionScaleform, "TOGGLE_MOUSE_BUTTONS")
+---@diagnostic disable-next-line: param-type-mismatch
 			PushScaleformMovieFunctionParameterBool(0)
 			PopScaleformMovieFunctionVoid()
 			for buttonIndex, buttonValues in ipairs(buttons or {}) do
@@ -154,6 +155,7 @@ function RaycastFromPlayer()
     local camCoord = GetGameplayCamCoord()
     local camRot = GetGameplayCamRot(0)
 
+---@diagnostic disable-next-line: param-type-mismatch
     local rayHandle = StartExpensiveSynchronousShapeTestLosProbe(camCoord, camCoord + RotationToDirection(camRot) * 1000, -1, playerPed)
     local _, hit, endCoords, surfaceNormal, entityHit = GetShapeTestResult(rayHandle)
 

@@ -20,7 +20,7 @@ OnNet("startCheckerThread", function()
             if distance < 150.0 then
                 nearAnyFire = true
 
-                local firesNum = GetNumberOfFiresInRange(coords.x, coords.y, coords.z, 5.0)
+                local firesNum = GetNumberOfFiresInRange(fire.coords.x, fire.coords.y, fire.coords.z, 5.0)
                 if firesNum < 1 then
                     EmitNet("extinguishFire", id)
                 end
@@ -42,7 +42,8 @@ end)
 OnNet("syncFire", function(id, fireData)
     local fire = fires[id]
 
-	_debug("Requested sync:", id, json.encode(fireData, { sort_keys = true, indent = true }))
+	local isPlayerFirefighter = (LocalPlayer.state[config.firefighterPermission] or false)
+	_debug("Requested sync:", id, isPlayerFirefighter, json.encode(fireData, { sort_keys = true, indent = true }))
 
 	local coords = fireData.coords
 	local rot = fireData.rot
@@ -51,8 +52,21 @@ OnNet("syncFire", function(id, fireData)
 
 	if fireData.coords then
 		if fire then
+			RemoveBlip(fire.blip)
 			RemoveScriptFire(fire.scriptFire)
 			StopParticleFxLooped(fire.particle, false)
+		end
+
+		local blip
+		if isPlayerFirefighter then
+			blip = AddBlipForCoord(coords.x, coords.y, coords.z)
+			SetBlipSprite(blip, 436)
+			SetBlipColour(blip, 1)
+			SetBlipScale(blip, 0.8)
+			SetBlipAsShortRange(blip, true)
+			BeginTextCommandSetBlipName("STRING")
+			AddTextComponentString("Incêndio")
+			EndTextCommandSetBlipName(blip)
 		end
 
 		while not HasNamedPtfxAssetLoaded(particles.DEFAULT[1]) do
@@ -67,12 +81,14 @@ OnNet("syncFire", function(id, fireData)
 			rot = rot,
 			difficultyMultiplier = difficultyMultiplier,
 			scriptFire = StartScriptFire(coords.x, coords.y, coords.z, 5, true),
-			particle = StartParticleFxLoopedAtCoord(particles.DEFAULT[2], coords.x, coords.y, coords.z, 0.0, 0.0, 0.0, scale, false, false, false, false)
+			particle = StartParticleFxLoopedAtCoord(particles.DEFAULT[2], coords.x, coords.y, coords.z, 0.0, 0.0, 0.0, scale / 1.0, false, false, false, false),
+			blip = blip
 		}
 		fires[id] = fire
 	else
 		--- Remove the fire
 		if fire then
+			RemoveBlip(fire.blip)
             RemoveScriptFire(fire.scriptFire)
 			StopParticleFxLooped(fire.particle, false)
 			fires[id] = nil
