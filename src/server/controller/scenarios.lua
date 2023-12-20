@@ -20,7 +20,7 @@ Citizen.CreateThread(function()
                 )
 			then
 
-				local scenarioIndex = getRandomIndex(ScenariosConfig)
+				local scenarioIndex = table.random(ScenariosConfig)
                 local scenario = ScenariosConfig[scenarioIndex]
                 for _, fire in pairs(scenario.fires) do
                     Fire:new(vector3(fire.x, fire.y, fire.z), fire.scale, fire.difficultyMultiplier)

@@ -7,12 +7,19 @@ function uuid()
 end
 
 -- get random index from table
-function getRandomIndex(t)
-	local keys = {}
-	for key, _ in pairs(t) do
-		table.insert(keys, key)
-	end
-	return keys[math.random(1, #keys)]
+function table.random(t)
+    local keys = {}
+    for key, _ in pairs(t) do
+        table.insert(keys, key)
+    end
+    return keys[math.random(1, #keys)]
+end
+
+-- get table size
+function table.size(t)
+	local count = 0
+	for _ in pairs(t) do count = count + 1 end
+	return count
 end
 
 function _debug(...)

@@ -4,6 +4,7 @@ lua54 "yes"
 
 shared_script {
     "@vrp/lib/Utils.lua",
+    "@vrp/config/Native.lua",
 	"config/**.lua",
 	"src/shared/**.lua"
 }

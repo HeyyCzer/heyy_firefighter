@@ -20,6 +20,20 @@ OnNet("startCheckerThread", function()
             if distance < 150.0 then
                 nearAnyFire = true
 
+				if fire.vehicle then
+					_debug("Vehicle fire detected", fire.vehicle)
+					local vehicle = fire.vehicle
+					if DoesEntityExist(vehicle) then
+						fire.coords = GetEntityCoords(vehicle)
+						SetVehicleEngineHealth(vehicle, 100.0)
+						SetVehicleBodyHealth(vehicle, 100.0)
+						SetVehiclePetrolTankHealth(vehicle, 1000.0)
+						SetVehicleUndriveable(vehicle, true)
+						_debug("Preventing vehicle from exploding...")
+						Emit("syncFire", id, fire)
+					end
+				end
+
                 local firesNum = GetNumberOfFiresInRange(fire.coords.x, fire.coords.y, fire.coords.z, 5.0)
                 if firesNum < 1 then
                     EmitNet("extinguishFire", id)
@@ -34,9 +48,10 @@ OnNet("startCheckerThread", function()
 		if not nearAnyFire then
 			break
 		end
-		Citizen.Wait(5000)
+		Citizen.Wait(3000)
     end
 	runningThread = false
+	_debug("Stopped thread, no fires nearby")
 end)
 
 OnNet("syncFire", function(id, fireData)
@@ -82,7 +97,8 @@ OnNet("syncFire", function(id, fireData)
 			difficultyMultiplier = difficultyMultiplier,
 			scriptFire = StartScriptFire(coords.x, coords.y, coords.z, 5, true),
 			particle = StartParticleFxLoopedAtCoord(particles.DEFAULT[2], coords.x, coords.y, coords.z, 0.0, 0.0, 0.0, scale / 1.0, false, false, false, false),
-			blip = blip
+			blip = blip,
+			vehicle = fireData.vehicle,
 		}
 		fires[id] = fire
 	else
@@ -96,6 +112,12 @@ OnNet("syncFire", function(id, fireData)
 	end
 end)
 
-RegisterCommand("fires", function(_, args, rawCommand)
-	print(json.encode(fires))
-end)
+if config.debug then
+	RegisterCommand("fires", function(_, args, rawCommand)
+		print(table.size(fires), json.encode(fires))
+	end)
+
+	RegisterCommand("vehfire", function(_, args, rawCommand)
+		TriggerServerEvent("heyy_firefighter:startVehicleFire", VehToNet(GetVehiclePedIsIn(PlayerPedId())))
+	end)
+end

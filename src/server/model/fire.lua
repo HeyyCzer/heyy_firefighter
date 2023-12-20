@@ -20,6 +20,7 @@ function Fire:new(coords, scale, difficultyMultiplier)
 	o.scale = scale
     o.difficultyMultiplier = difficultyMultiplier
 	o.health = math.ceil(math.random((o.difficultyMultiplier - 1) * 100, (o.difficultyMultiplier + 1) * 100) / 100)
+	o.startedAt = os.time()
 
     o:syncToAllPlayers()
 
@@ -74,7 +75,32 @@ function Fire:extinguish()
     self.coords = nil
 	self.scale = nil
     self.difficultyMultiplier = nil
-    self:syncToAllPlayers()
+
+    if self.vehicle then
+        Entity(self.vehicle).state.inFire = true
+    end
+	self:syncToAllPlayers()
 
 	FIRES[self.id] = nil
+end
+
+function Fire:attachToVehicle(vehicle)
+    self.vehicle = vehicle
+
+    Citizen.CreateThread(function()
+        if self.runningVehicleThread then return end
+
+		self.runningVehicleThread = true
+        while self.runningVehicleThread do
+			if DoesEntityExist(vehicle) then
+				local coords = GetEntityCoords(vehicle)
+                self.coords = coords
+				Entity(vehicle).state.inFire = true
+				self:syncToAllPlayers()
+			else
+				self:extinguish()
+			end
+			Citizen.Wait(10000)
+        end
+	end)
 end
