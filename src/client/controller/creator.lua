@@ -20,11 +20,15 @@ OnNet("admin:setCreatorStatus", function(status)
 				["button"] = "~INPUT_CELLPHONE_CANCEL~"
 			},
 			{
-				["label"] = "Remover último checkpoint",
+				["label"] = "Sair sem salvar",
+				["button"] = "~INPUT_CELLPHONE_OPTION~"
+			},
+			{
+				["label"] = "Remover último fogo",
 				["button"] = "~INPUT_MULTIPLAYER_INFO~"
 			},
 			{
-				["label"] = "Adicionar checkpoint",
+				["label"] = "Adicionar fogo",
 				["button"] = "~INPUT_CELLPHONE_SELECT~"
 			},
 		}
@@ -69,6 +73,11 @@ OnNet("admin:setCreatorStatus", function(status)
                 -- Exit creator & save
             elseif IsDisabledControlPressed(0, 177) then
                 creator.save()
+                creator.stop()
+                Wait(500)
+
+				-- Exit creator
+            elseif IsDisabledControlPressed(0, 178) then
                 creator.stop()
                 Wait(500)
             end

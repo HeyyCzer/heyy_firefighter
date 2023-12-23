@@ -21,6 +21,27 @@ RegisterCommand("firecreator", function(source)
 	end
 end)
 
+local Tunnel = module("vrp","lib/Tunnel")
+vKEYBOARD = Tunnel.getInterface("keyboard")
+
+RegisterCommand("startfire", function(source)
+	local Passport = vRP.Passport(source)
+
+    if vRP.HasGroup(Passport, "Admin", 1) then
+        local options = {}
+		
+		for index in pairs(ScenariosConfig) do
+			table.insert(options, { value = index, label = index })
+		end
+
+        local input = vKEYBOARD.showModal(source, "Iniciar incêndio", {
+			{ type = 'select', label = 'Local', options = options, required = true },
+		})
+		if not input or not input[1] then return end
+		StartScenario(input[1])
+	end
+end)
+
 -- RegisterCommand("w", function(source, args)
 -- 	GiveWeaponToPed(GetPlayerPed(source), GetHashKey(args[1]), parseInt(args[2]), false, true)
 -- end)
