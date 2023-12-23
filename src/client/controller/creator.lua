@@ -108,8 +108,6 @@ end)
 
 
 function creator.addFire(x, y, z)
-	print("addFire")
-
     local input = exports.keyboard:show("Adicionar fogo", {
         {
             type = "slider",
@@ -120,15 +118,25 @@ function creator.addFire(x, y, z)
             step = 0.25,
 			default = 2.0,
             required = true,
-        }
+        },
+        {
+            type = "slider",
+            label = "Fator de dificuldade",
+            icon = "fire",
+            min = 1.0,
+            max = 50.0,
+            step = 1.0,
+			default = 1.0,
+            required = true,
+        },
     })
     if not input then return end
 
     local scale = input[1]
+    local difficulty = input[2]
 	scale = scale + 0.0
-    table.insert(creatorFires, { x = x, y = y, z = z, scale = scale, difficultyMultiplier = 1.0 })
-
-	_debug("Creator fires", json.encode(creatorFires, {sort_keys = true, indent = true}))
+	difficulty = difficulty + 0.0
+    table.insert(creatorFires, { x = x, y = y, z = z, scale = scale, difficultyMultiplier = difficulty })
 end
 
 function creator.removeFire()

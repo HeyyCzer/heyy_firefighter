@@ -19,10 +19,17 @@ if config.debug then
 	end)
 end
 
+local fireCreator = {}
 RegisterCommand("firecreator", function(source)
 	local Passport = vRP.Passport(source)
 
-	if vRP.HasGroup(Passport, "Admin", 1) then
+    if vRP.HasGroup(Passport, "Admin", 1) then
+		local input = vKEYBOARD.showModal(source, "Criar cenário de incêndio", {
+			{ type = 'input', label = 'Nome do Cenário', required = true },
+        })
+        if not input then return end
+		
+		fireCreator[source] = input[1]
 		EmitNet("admin:setCreatorStatus", source, true)
 	end
 end)
@@ -34,7 +41,6 @@ vKEYBOARD = Tunnel.getInterface("keyboard")
 
 RegisterCommand("startfire", function(source)
 	local Passport = vRP.Passport(source)
-
     if vRP.HasGroup(Passport, "Admin", 1) then
         local options = {}
 		
@@ -45,11 +51,44 @@ RegisterCommand("startfire", function(source)
         local input = vKEYBOARD.showModal(source, "Iniciar incêndio", {
 			{ type = 'select', label = 'Local', options = options, required = true },
 		})
-		if not input or not input[1] then return end
+		if not input then return end
 		StartScenario(input[1])
 	end
 end)
 
 OnNet("exportFires", function(data)
-	SaveResourceFile(GetCurrentResourceName(), "fires-" .. os.time() .. ".json", json.encode(data, {sort_keys = true, indent = true}), -1)
+	local Passport = vRP.Passport(source)
+	if not vRP.HasGroup(Passport, "Admin", 1) then return end
+
+    local template = [[["%s"] = {
+	coords = vec3(%s, %s, %s),
+	fires = {
+%s
+	}
+}
+	]]
+
+	local fires = ""
+    for _, fire in pairs(data) do
+        fires = fires ..
+            "\t\t{\n" ..
+            "\t\t\tx = " .. mathLength(fire.x) .. ",\n" ..
+            "\t\t\ty = " .. mathLength(fire.y) .. ",\n" ..
+            "\t\t\tz = " .. mathLength(fire.z) .. ",\n" ..
+            "\t\t\tscale = " .. fire.scale .. ",\n" ..
+            "\t\t\tdifficultyMultiplier = " .. fire.difficultyMultiplier .. ",\n" ..
+            "\t\t},\n"
+    end
+
+	local currentCoords = GetEntityCoords(GetPlayerPed(source))
+
+    template = template:format(
+		fireCreator[source],
+		mathLength(currentCoords.x),
+		mathLength(currentCoords.y),
+		mathLength(currentCoords.z),
+		fires
+	)
+
+	SaveResourceFile(GetCurrentResourceName(), fireCreator[source] ..  "-" .. Passport .. ".txt", template, -1)
 end)
