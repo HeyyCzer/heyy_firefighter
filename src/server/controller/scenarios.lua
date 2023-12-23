@@ -20,7 +20,7 @@ Citizen.CreateThread(function()
                 )
             then
                 local scenarios = {}
-                for k, v in pairs(config.scenariosOptions) do
+                for k, v in pairs(ScenariosConfig) do
                     if not v.onlyManually then
                         scenarios[k] = v
                     end

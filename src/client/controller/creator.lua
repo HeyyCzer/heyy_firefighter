@@ -90,12 +90,12 @@ OnNet("admin:setCreatorStatus", function(status)
 	Citizen.CreateThread(function()
         while creatorStatus do
 			local _, endCoords = RaycastFromPlayer()
-			DrawMarker(28,endCoords.x,endCoords.y,endCoords.z + 0.3,0,0,0,0,0,0.0,1.0,1.0,1.0,255,0,0,100,false,false,0,false)
+			DrawMarker(28,endCoords.x,endCoords.y,endCoords.z + 0.3,0,0,0,0,0,0.0,0.3,0.3,0.3,0,130,255,100,false,false,0,false)
 			
             currentCoords = endCoords
 				
 			for _, fire in ipairs(creatorFires) do
-				DrawMarker(28,fire.x,fire.y,fire.z + 0.3,0,0,0,0,0,0.0,fire.scale,fire.scale,fire.scale,255,0,0,100,false,false,0,false)
+				DrawMarker(28,fire.x,fire.y,fire.z + 0.3,0,0,0,0,0,0.0,fire.scale * 2/3, fire.scale * 2/3,fire.scale * 2/3,255,0,0,100,false,false,0,false)
 			end
 
 			Wait(0)

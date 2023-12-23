@@ -1,4 +1,5 @@
 config = {
+	debug = GetConvar("heyyshop_development", "false") == "true",
     firefighterPermission = "Police",
 
     scenariosOptions = {
