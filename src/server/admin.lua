@@ -21,7 +21,9 @@ RegisterCommand("firecreator", function(source)
 	end
 end)
 
+---@diagnostic disable-next-line: deprecated
 local Tunnel = module("vrp","lib/Tunnel")
+---@diagnostic disable-next-line: undefined-field
 vKEYBOARD = Tunnel.getInterface("keyboard")
 
 RegisterCommand("startfire", function(source)
