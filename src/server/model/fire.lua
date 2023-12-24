@@ -86,6 +86,7 @@ end
 
 function Fire:attachToVehicle(vehicle)
     self.vehicle = vehicle
+	self.vehicleNetId = NetworkGetNetworkIdFromEntity(vehicle)
 
     Citizen.CreateThread(function()
         if self.runningVehicleThread then return end
@@ -100,7 +101,7 @@ function Fire:attachToVehicle(vehicle)
 			else
 				self:extinguish()
 			end
-			Citizen.Wait(10000)
+			Citizen.Wait(30000)
         end
 	end)
 end

@@ -8,29 +8,41 @@ local runningThread = false
 OnNet("startCheckerThread", function()
 	if runningThread then return end
 	
+	local repeatID = 0
 	runningThread = true
     while runningThread do
 		local nearAnyFire = false
         local coords = GetEntityCoords(PlayerPedId())
-		
 		local totalFires = 0
-
+		repeatID = repeatID + 1
+        local lastRepeatID = repeatID
         for id, fire in pairs(fires) do
             local distance = #(coords - fire.coords)
             if distance < 150.0 then
                 nearAnyFire = true
 
-				if fire.vehicle then
-					_debug("Vehicle fire detected", fire.vehicle)
-					local vehicle = fire.vehicle
-					if DoesEntityExist(vehicle) then
-						fire.coords = GetEntityCoords(vehicle)
-						SetVehicleEngineHealth(vehicle, 100.0)
-						SetVehicleBodyHealth(vehicle, 100.0)
-						SetVehiclePetrolTankHealth(vehicle, 1000.0)
-						SetVehicleUndriveable(vehicle, true)
-						_debug("Preventing vehicle from exploding...")
-						Emit("syncFire", id, fire)
+				if fire.vehicleNetId then
+					if NetworkDoesNetworkIdExist(fire.vehicleNetId) then
+						_debug("Vehicle exists")
+						local vehicle = NetworkGetEntityFromNetworkId(fire.vehicleNetId)
+                        if DoesEntityExist(vehicle) then
+                            NetworkRequestControlOfEntity(vehicle)
+							fire.coords = GetEntityCoords(vehicle)
+							async(function()
+								while lastRepeatID == repeatID and NetworkHasControlOfEntity(vehicle) do
+									SetVehicleEngineHealth(vehicle, 100.0)
+									SetVehicleBodyHealth(vehicle, 100.0)
+									SetVehiclePetrolTankHealth(vehicle, 1000.0)
+									SetVehicleUndriveable(vehicle, true)
+									_debug("Preventing vehicle from exploding...")
+									Citizen.Wait(500)
+								end
+							end)
+                            
+							if repeatID % 5 == 0 then
+								Emit("syncFire", id, fire)
+							end
+						end
 					end
 				end
 
@@ -48,7 +60,7 @@ OnNet("startCheckerThread", function()
 		if not nearAnyFire then
 			break
 		end
-		Citizen.Wait(3000)
+		Citizen.Wait(5000)
     end
 	runningThread = false
 	_debug("Stopped thread, no fires nearby")
@@ -89,16 +101,17 @@ OnNet("syncFire", function(id, fireData)
 			Citizen.Wait(1)
 		end
 		UseParticleFxAssetNextCall(particles.DEFAULT[1])
-
+		
 		fire = {
 			id = id,
 			coords = coords,
 			rot = rot,
+			scale = scale,
 			difficultyMultiplier = difficultyMultiplier,
-			scriptFire = StartScriptFire(coords.x, coords.y, coords.z, 5, true),
+            scriptFire = StartScriptFire(coords.x, coords.y, coords.z, 5, true),
 			particle = StartParticleFxLoopedAtCoord(particles.DEFAULT[2], coords.x, coords.y, coords.z, 0.0, 0.0, 0.0, scale / 1.0, false, false, false, false),
 			blip = blip,
-			vehicle = fireData.vehicle,
+			vehicleNetId = fireData.vehicleNetId,
 		}
 		fires[id] = fire
 	else
@@ -119,5 +132,13 @@ if config.debug then
 
 	RegisterCommand("vehfire", function(_, args, rawCommand)
 		TriggerServerEvent("heyy_firefighter:startVehicleFire", VehToNet(GetVehiclePedIsIn(PlayerPedId())))
+    end)
+	
+    OnNet("testVeh", function(...)
+		local args = {...}
+		print("Received vehicle:", json.encode(args))
+        print("Vehicle exists:", DoesEntityExist(args[1]))
+        print("Vehicle is networked:", NetworkDoesNetworkIdExist(args[2]))
+		print("Vehicle is networked:", NetworkDoesNetworkIdExist(args[3]))
 	end)
 end

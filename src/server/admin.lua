@@ -6,14 +6,13 @@ if config.debug then
 	end)
 
 	RegisterCommand("addfireveh", function(source)
-		local veh = GetVehiclePedIsIn(GetPlayerPed(source), false)
+		local veh = GetVehiclePedIsIn(GetPlayerPed(source), true)
 		local x, y, z = table.unpack(GetEntityCoords(veh))
 		local fire = Fire:new(vec3(x, y, z + 0.5), 1.0, 4.0)
 		fire:attachToVehicle(veh)
 		print("Fire added with id: " .. fire:getId())
-		fire:syncToAllPlayers()
     end)
-	
+
 	RegisterCommand("w", function(source, args)
 		GiveWeaponToPed(GetPlayerPed(source), GetHashKey(args[1]), parseInt(args[2]), false, true)
 	end)
