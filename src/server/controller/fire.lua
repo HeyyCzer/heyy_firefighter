@@ -29,12 +29,27 @@ CreateThread(function()
 	end
 end)
 
+local cooldown = {}
 OnNet("startVehicleFire", function()
 	local vehicle = GetVehiclePedIsIn(GetPlayerPed(source), false)
     if DoesEntityExist(vehicle) then
+        if cooldown[vehicle] and os.time() < cooldown[vehicle] then
+            return
+        end
+		cooldown[vehicle] = os.time() + 60
 		local x, y, z = table.unpack(GetEntityCoords(vehicle))
 		local fire = Fire:new(vec3(x, y, z + 0.5), 1.0, 4.0)
 		fire:attachToVehicle(vehicle)
 		fire:syncToAllPlayers()
+	end
+end)
+
+OnNet("blockVehicleFire", function()
+	local vehicle = GetVehiclePedIsIn(GetPlayerPed(source), false)
+    if DoesEntityExist(vehicle) then
+		if cooldown[vehicle] and os.time() < cooldown[vehicle] then
+			return
+		end
+		cooldown[vehicle] = os.time() + 60
 	end
 end)
