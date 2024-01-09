@@ -4,7 +4,7 @@ local lastScenarioTime = nil
 Citizen.CreateThread(function()
     while true do
         local _, total = vRP.NumPermission(config.firefighterPermission)
-        if total >= config.scenariosOptions.minFirefighters or table.size(FIRES) > 0 then
+        if total >= config.scenariosOptions.minFirefighters and table.size(FIRES) <= 0 then
             if not timeToNextScenario then
 				local time = math.random(config.scenariosOptions.minTime, config.scenariosOptions.maxTime) * 60
                 timeToNextScenario = os.time() + time
