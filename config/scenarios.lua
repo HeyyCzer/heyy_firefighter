@@ -16,6 +16,7 @@ ScenariosConfig = {
     ["CentralBank"] = {
         coords = vector3(223.79, 209.62, 105.53),
 		onlyManually = true,
+		progressiveFires = true,
         fires = {
 			{
 				difficultyMultiplier = 3,
@@ -134,6 +135,7 @@ ScenariosConfig = {
 	["Banco Praça"] = {
 		coords = vector3(152.15,-1035.7,29.45),
 		onlyManually = true,
+		progressiveFires = true,
         fires = {
 			{
 				difficultyMultiplier = 3,
@@ -210,6 +212,7 @@ ScenariosConfig = {
 	["Vanilla"] = {
 		coords = vector3(127.67,-1297.81,37.59),
 		onlyManually = true,
+		progressiveFires = true,
 		fires = {
 			{
                 difficultyMultiplier = 20,
@@ -433,6 +436,7 @@ ScenariosConfig = {
 	["Police Departament"] = {
         coords = vector3(447.42, -986.72, 49.5),
 		onlyManually = true,
+		progressiveFires = true,
 		fires = {
 			{
                 difficultyMultiplier = 20,
@@ -1274,6 +1278,7 @@ ScenariosConfig = {
 	["LS Custom"] = {
 		coords = vector3(-326.62,-137.86,40.24),
 		onlyManually = true,
+		progressiveFires = true,
 		fires = {
 			{
                 difficultyMultiplier = 20,
@@ -1711,6 +1716,7 @@ ScenariosConfig = {
 	["Pearls"] = {
 		coords = vector3(-1827.81,-1193.3,14.56),
 		onlyManually = true,
+		progressiveFires = true,
 		fires = {
 			{
                 difficultyMultiplier = 20,
@@ -1908,6 +1914,7 @@ ScenariosConfig = {
 	["Hospital"] = {
 		coords = vector3(1140.27,-1541.01,53.5),
 		onlyManually = true,
+		progressiveFires = true,
 		fires = {
 			{
                 difficultyMultiplier = 20,
@@ -2436,24 +2443,4 @@ ScenariosConfig = {
             
 		}
 	},
-            ["Teste"] = {
-                coords = vec3(1247.75, -328.57, 88.46),
-                onlyManually = true,
-                fires = {
-                    {
-                        x = 1267.77,
-                        y = -346.97,
-                        z = 68.4,
-                        scale = 1.25,
-                        difficultyMultiplier = 16.0,
-                    },
-                    {
-                        x = 1269.33,
-                        y = -346.21,
-                        z = 68.39,
-                        scale = 2.0,
-                        difficultyMultiplier = 11.0,
-                    },
-        }
-    },
 }
