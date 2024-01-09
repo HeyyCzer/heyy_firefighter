@@ -101,7 +101,7 @@ function Fire:attachToVehicle(vehicle)
 			else
 				self:extinguish()
 			end
-			Citizen.Wait(30000)
+			Citizen.Wait(15000)
         end
 	end)
 end
