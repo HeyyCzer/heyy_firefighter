@@ -18,7 +18,7 @@ OnNet("startCheckerThread", function()
         local lastRepeatID = repeatID
         for id, fire in pairs(fires) do
             local distance = #(coords - fire.coords)
-            if distance < 150.0 then
+            if distance < 110.0 then
                 nearAnyFire = true
 
 				if fire.vehicleNetId then
@@ -38,7 +38,7 @@ OnNet("startCheckerThread", function()
 									Citizen.Wait(500)
 								end
 							end)
-                            
+
 							if repeatID % 5 == 0 then
 								Emit("syncFire", id, fire)
 							end
@@ -46,7 +46,7 @@ OnNet("startCheckerThread", function()
 					end
 				end
 
-                local firesNum = GetNumberOfFiresInRange(fire.coords.x, fire.coords.y, fire.coords.z, 5.0)
+                local firesNum = GetNumberOfFiresInRange(fire.coords.x, fire.coords.y, fire.coords.z, 1.0)
                 if firesNum < 1 then
                     EmitNet("extinguishFire", id)
                 end
@@ -80,8 +80,12 @@ OnNet("syncFire", function(id, fireData)
 	if fireData.coords then
 		if fire then
 			RemoveBlip(fire.blip)
-			RemoveScriptFire(fire.scriptFire)
-			StopParticleFxLooped(fire.particle, false)
+			if fire.scriptFire then
+				RemoveScriptFire(fire.scriptFire)
+			end
+			if fire.particle then
+				StopParticleFxLooped(fire.particle, false)
+			end
 		end
 
 		local blip
@@ -96,20 +100,26 @@ OnNet("syncFire", function(id, fireData)
 			EndTextCommandSetBlipName(blip)
 		end
 
-		while not HasNamedPtfxAssetLoaded(particles.DEFAULT[1]) do
-			RequestNamedPtfxAsset(particles.DEFAULT[1])
-			Citizen.Wait(1)
+		local scriptFire, particle
+		if #(fireData.coords - GetEntityCoords(PlayerPedId())) < 100.0 then
+			while not HasNamedPtfxAssetLoaded(particles.DEFAULT[1]) do
+				RequestNamedPtfxAsset(particles.DEFAULT[1])
+				Citizen.Wait(1)
+			end
+			UseParticleFxAssetNextCall(particles.DEFAULT[1])
+
+			scriptFire = StartScriptFire(coords.x, coords.y, coords.z, 5, true)
+			particle = StartParticleFxLoopedAtCoord(particles.DEFAULT[2], coords.x, coords.y, coords.z, 0.0, 0.0, 0.0, scale / 1.0, false, false, false, false)
 		end
-		UseParticleFxAssetNextCall(particles.DEFAULT[1])
-		
+
 		fire = {
 			id = id,
 			coords = coords,
 			rot = rot,
 			scale = scale,
 			difficultyMultiplier = difficultyMultiplier,
-            scriptFire = StartScriptFire(coords.x, coords.y, coords.z, 5, true),
-			particle = StartParticleFxLoopedAtCoord(particles.DEFAULT[2], coords.x, coords.y, coords.z, 0.0, 0.0, 0.0, scale / 1.0, false, false, false, false),
+            scriptFire = scriptFire,
+			particle = particle,
 			blip = blip,
 			vehicleNetId = fireData.vehicleNetId,
 		}
@@ -118,8 +128,12 @@ OnNet("syncFire", function(id, fireData)
 		--- Remove the fire
 		if fire then
 			RemoveBlip(fire.blip)
-            RemoveScriptFire(fire.scriptFire)
-			StopParticleFxLooped(fire.particle, false)
+			if fire.scriptFire then
+            	RemoveScriptFire(fire.scriptFire)
+			end
+			if fire.particle then
+				StopParticleFxLooped(fire.particle, false)
+			end
 			fires[id] = nil
 		end
 	end

@@ -4,7 +4,7 @@ local lastScenarioTime = nil
 Citizen.CreateThread(function()
     while true do
         local _, total = vRP.NumPermission(config.firefighterPermission)
-        if total >= config.scenariosOptions.minFirefighters then
+        if total >= config.scenariosOptions.minFirefighters or table.size(FIRES) > 0 then
             if not timeToNextScenario then
 				local time = math.random(config.scenariosOptions.minTime, config.scenariosOptions.maxTime) * 60
                 timeToNextScenario = os.time() + time
@@ -31,7 +31,6 @@ Citizen.CreateThread(function()
 				end
 
 				local scenarioIndex = table.random(scenarios)
-				Wait(0)
 				StartScenario(scenarioIndex)
 			end
 		end
@@ -42,9 +41,17 @@ end)
 function StartScenario(scenarioIndex)
     local firefighters = vRP.NumPermission(config.firefighterPermission)
     local scenario = ScenariosConfig[scenarioIndex]
-    for _, fire in pairs(scenario.fires) do
-        Fire:new(vector3(fire.x, fire.y, fire.z), fire.scale, fire.difficultyMultiplier)
-    end
+
+	async(function()
+		for _, fire in pairs(scenario.fires) do
+			Fire:new(vector3(fire.x, fire.y, fire.z), fire.scale, fire.difficultyMultiplier)
+			
+			if scenario.progressiveFires then
+				local random = math.random(100, 60000)
+				Wait(random)
+			end
+		end
+	end)
 
     lastScenarioTime = os.time()
     timeToNextScenario = nil

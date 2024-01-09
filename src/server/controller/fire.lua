@@ -19,10 +19,26 @@ CreateThread(function()
 
 			local coords = GetEntityCoords(GetPlayerPed(v))
             for _, fire in pairs(FIRES) do
-                if #(coords - fire:getCoords()) < 150.0 then
+                if not Player(v).state.visibleFires then
+                    Player(v).state:set("visibleFires", {}, false)
+                end
+
+				local fires = Player(v).state.visibleFires
+                if #(coords - fire:getCoords()) < 100.0 then
+                    if not fires[fire.id] then
+						fire:syncToPlayer(v)
+						fires[fire.id] = fire
+						Player(v).state:set("visibleFires", fires, false)
+					end
+
                     EmitNet("startCheckerThread", v)
 					break
-                end
+                else
+					if fires[fire.id] then
+						fires[fire.id] = nil
+						Player(v).state:set("visibleFires", fires, false)
+					end
+				end
             end
 		end
 		Wait(10000)

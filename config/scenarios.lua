@@ -145,116 +145,123 @@ ScenariosConfig = {
 			
 		}
 	},
-	["TREINO"] = {
-		coords = vector3(180.43,-1651.45,29.81),
-		onlyManually = true,
-		fires = {
-			{
-				difficultyMultiplier = 25,
-				scale = 5,
-				["x"] = 179.79,
-				["y"] = -1648.39,
-				["z"] = 29.81
-			},
-			{
-				difficultyMultiplier = 25,
-				scale = 5,
-				["x"] = 181.8,
-				["y"] = -1650.71,
-				["z"] = 29.81
-			},
-			{
-				difficultyMultiplier = 3,
-				scale = 2,
-				["x"] = 180.85,
-				["y"] = -1666.66,
-				["z"] = 29.82
-			},
-			{
-				difficultyMultiplier = 25,
-				scale = 5,
-				["x"] = 177.3,
-				["y"] = -1650.97,
-				["z"] = 29.81
-			},
-			{
-				difficultyMultiplier = 3,
-				scale = 2,
-				["x"] = 178.51,
-				["y"] = -1665.04,
-				["z"] = 29.82
-			},
-			{
-				difficultyMultiplier = 3,
-				scale = 2,
-				["x"] = 176.27,
-				["y"] = -1663.18,
-				["z"] = 29.82
-			},
-			{
-				difficultyMultiplier = 3,
-				scale = 2,
-				["x"] = 174.08,
-				["y"] = -1661.43,
-				["z"] = 29.81
-			},
-		}
-	},
+	["Treino bombeiros"] = {
+        coords = vec3(182.51, -1656.09, 35.03),
+        onlyManually = true,
+        fires = {
+            {
+                x = 181.76,
+                y = -1667.0,
+                z = 28.82,
+                scale = 2.0,
+                difficultyMultiplier = 2.0,
+            },
+            {
+                x = 179.15,
+                y = -1664.73,
+                z = 28.82,
+                scale = 2.0,
+                difficultyMultiplier = 2.0,
+            },
+            {
+                x = 177.05,
+                y = -1663.04,
+                z = 28.82,
+                scale = 3.0,
+                difficultyMultiplier = 2.0,
+            },
+            {
+                x = 174.39,
+                y = -1660.94,
+                z = 28.81,
+                scale = 2.5,
+                difficultyMultiplier = 2.0,
+            },  
+            {
+                x = 177.64,
+                y = -1651.22,
+                z = 28.81,
+                scale = 5.0,
+                difficultyMultiplier = 15.0,
+            },
+            {
+                x = 181.73,
+                y = -1650.86,
+                z = 28.81,
+                scale = 5.0,
+                difficultyMultiplier = 15.0,
+            },
+            {
+                x = 172.53,
+                y = -1657.53,
+                z = 28.81,
+                scale = 3.0,
+                difficultyMultiplier = 2.0,
+            },
+            {
+                x = 187.28,
+                y = -1656.67,
+                z = 28.93,
+                scale = 4.0,
+                difficultyMultiplier = 2.0,
+            },
+        }
+    },       
 	["Vanilla"] = {
 		coords = vector3(127.67,-1297.81,37.59),
 		onlyManually = true,
 		fires = {
 			{
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 117.8,
                 ["y"] = -1305.48,
                 ["z"] = 29.23
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 124.22,
                 ["y"] = -1301.85,
                 ["z"] = 29.23
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 133.75,
                 ["y"] = -1296.23,
                 ["z"] = 29.23
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 139.32,
                 ["y"] = -1293.49,
                 ["z"] = 29.23
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 123.47,
                 ["y"] = -1305.98,
                 ["z"] = 35.27
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 138.14,
                 ["y"] = 1297.6,
                 ["z"] = 35.27
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 132.1,
                 ["y"] = -1304.28,
                 ["z"] = 33.08
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 94.96,
                 ["y"] = 1284.26,
@@ -428,105 +435,105 @@ ScenariosConfig = {
 		onlyManually = true,
 		fires = {
 			{
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 418.24,
                 ["y"] = -988.5,
                 ["z"] = 29.37
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 424.28,
                 ["y"] = -995.41,
                 ["z"] = 30.72
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 410.91,
                 ["y"] = -1024.23,
                 ["z"] = 29.45
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 457.31,
                 ["y"] = -1008.6,
                 ["z"] = 28.31
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 448.13,
                 ["y"] = -1000.15,
                 ["z"] = 30.72
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 435.21,
                 ["y"] = -976.29,
                 ["z"] = 30.72
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 473.19,
                 ["y"] = -969.91,
                 ["z"] = 27.73
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 474.51,
                 ["y"] = -978.22,
                 ["z"] = 27.99
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 485.93,
                 ["y"] = -980.53,
                 ["z"] = 27.97
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 489.79,
                 ["y"] = -1010.17,
                 ["z"] = 27.94
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 447.43,
                 ["y"] = -969.69,
                 ["z"] = 30.36
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 419.12,
                 ["y"] = -1010.29,
                 ["z"] = 29.25
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 473.17,
                 ["y"] = -1021.79,
                 ["z"] = 28.12
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 427.15,
                 ["y"] = -1001.27,
                 ["z"] = 30.7
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 458.56,
                 ["y"] = -1018.02,
@@ -1269,70 +1276,70 @@ ScenariosConfig = {
 		onlyManually = true,
 		fires = {
 			{
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -349.71,
                 ["y"] = -112.0,
                 ["z"] = 39.43
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -358.33,
                 ["y"] = -137.12,
                 ["z"] = 39.43
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -354.6,
                 ["y"] = -146.96,
                 ["z"] = 38.25
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -363.41,
                 ["y"] = -160.7,
                 ["z"] = 38.16
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -355.51,
                 ["y"] = -109.33,
                 ["z"] = 38.7
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -352.29,
                 ["y"] = -122.2,
                 ["z"] = 49.57
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -355.47,
                 ["y"] = -130.73,
                 ["z"] = 49.57
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -351.7,
                 ["y"] = -120.55,
                 ["z"] = 39.43
             },
             {
-                difficultyMultiplier = 30,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -367.87,
                 ["y"] = -101.72,
                 ["z"] = 39.55
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -343.92,
                 ["y"] = -128.91,
@@ -1479,14 +1486,14 @@ ScenariosConfig = {
                 ["z"] = 42.04
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -345.03,
                 ["y"] = -133.64,
                 ["z"] = 39.01
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -343.14,
                 ["y"] = -129.7,
@@ -1528,7 +1535,7 @@ ScenariosConfig = {
                 ["z"] = 39.01
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -353.26,
                 ["y"] = -142.07,
@@ -1706,56 +1713,56 @@ ScenariosConfig = {
 		onlyManually = true,
 		fires = {
 			{
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1809.94,
                 ["y"] = -1202.51,
                 ["z"] = 13.01
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -1818.81,
                 ["y"] = -1186.89,
                 ["z"] = 14.31
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -1826.22,
                 ["y"] = -1181.6,
                 ["z"] = 14.31
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -1841.06,
                 ["y"] = -1199.94,
                 ["z"] = 14.31
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -1847.51,
                 ["y"] = -1189.23,
                 ["z"] = 15.28
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -1844.42,
                 ["y"] = -1197.83,
                 ["z"] = 23.42
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -1832.14,
                 ["y"] = -1175.44,
                 ["z"] = 23.39
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = -1823.41,
                 ["y"] = -1184.58,
@@ -1903,147 +1910,147 @@ ScenariosConfig = {
 		onlyManually = true,
 		fires = {
 			{
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1146.95,
                 ["y"] = -1525.89,
                 ["z"] = 34.85
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1140.37,
                 ["y"] = -1494.96,
                 ["z"] = 34.78
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1131.43,
                 ["y"] = -1520.29,
                 ["z"] = 34.83
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1113.31,
                 ["y"] = -1518.35,
                 ["z"] = 34.69
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1125.31,
                 ["y"] = -1479.62,
                 ["z"] = 34.69
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1119.53,
                 ["y"] = -1475.48,
                 ["z"] = 34.83
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1171.13,
                 ["y"] = -1491.92,
                 ["z"] = 34.85
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1167.43,
                 ["y"] = -1528.94,
                 ["z"] = 34.85
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1168.36,
                 ["y"] = -1581.37,
                 ["z"] = 34.85
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1150.59,
                 ["y"] = -1598.82,
                 ["z"] = 34.85
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1111.42,
                 ["y"] = -1549.1,
                 ["z"] = 35.27
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1113.16,
                 ["y"] = -1566.61,
                 ["z"] = 34.9
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1121.27,
                 ["y"] = -1622.05,
                 ["z"] = 34.88
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1167.67,
                 ["y"] = -1604.25,
                 ["z"] = 34.69
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1163.33,
                 ["y"] = -1553.03,
                 ["z"] = 34.74
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1139.94,
                 ["y"] = -1514.86,
                 ["z"] = 34.85
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1183.96,
                 ["y"] = -1549.39,
                 ["z"] = 34.79
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1189.51,
                 ["y"] = -1565.55,
                 ["z"] = 34.69
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1211.24,
                 ["y"] = -1500.26,
                 ["z"] = 34.69
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1189.59,
                 ["y"] = -1499.63,
                 ["z"] = 34.85
             },
             {
-                difficultyMultiplier = 25,
+                difficultyMultiplier = 20,
                 scale = 5,
                 ["x"] = 1211.68,
                 ["y"] = -1528.78,
@@ -2429,19 +2436,24 @@ ScenariosConfig = {
             
 		}
 	},
-    ["teste P"] = {
-        coords = vector3(407.11,-993.92,31.39),
-		onlyManually = true,
-        fires = {
-			{
-				difficultyMultiplier = 6,
-				scale = 4,
-				["x"] = 406.55,
-				["y"] = -983.41,
-				["z"] = 28.49
-			},
-            
-        },
+            ["Teste"] = {
+                coords = vec3(1247.75, -328.57, 88.46),
+                onlyManually = true,
+                fires = {
+                    {
+                        x = 1267.77,
+                        y = -346.97,
+                        z = 68.4,
+                        scale = 1.25,
+                        difficultyMultiplier = 16.0,
+                    },
+                    {
+                        x = 1269.33,
+                        y = -346.21,
+                        z = 68.39,
+                        scale = 2.0,
+                        difficultyMultiplier = 11.0,
+                    },
+        }
     },
-
 }
